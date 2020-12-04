@@ -23,4 +23,11 @@
     <color name="md_grey_700">#616161</color>
     <color name="md_cyan_800">#00838F</color>
     <color name="md_green_800">#2E7D32</color>
+    <color name="md_green_50">#E8F5E9</color>
+    <color name="md_green_900">#1B5E20</color>
+    <color name="md_green_700">#388E3C</color>
+    <color name="md_cyan_100">#B2EBF2</color>
+    <color name="md_deep_orange_500">#FF5722</color>
+    <color name="md_deep_orange_600">#F4511E</color>
+    <color name="md_green_600">#43A047</color>
 </resources>

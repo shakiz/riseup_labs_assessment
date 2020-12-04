@@ -9,11 +9,15 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import com.client.riseup_labs_assessment.R;
+import com.client.riseup_labs_assessment.tools.PrefManager;
+
+import static com.client.riseup_labs_assessment.tools.Constants.mIsLoggedIn;
 
 public class SplashActivity extends AppCompatActivity {
     private Animation topAnim, middleAnim, bottomAnim;
     private View first,second,third,fourth,fifth;
     private TextView AppName, DevelopedBy, Developer;
+    private PrefManager prefManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,7 @@ public class SplashActivity extends AppCompatActivity {
         AppName = findViewById(R.id.AppName);
         DevelopedBy = findViewById(R.id.DevelopedBy);
         Developer = findViewById(R.id.DeveloperName);
+        prefManager = new PrefManager(this);
     }
     //endregion
 
@@ -48,7 +53,13 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, DashboardActivity.class);
+                Intent intent;
+                if (prefManager.getBoolean(mIsLoggedIn)) {
+                    intent = new Intent(SplashActivity.this, DashboardActivity.class);
+                }
+                else {
+                    intent = new Intent(SplashActivity.this, LoginActivity.class);
+                }
                 startActivity(intent);
                 finish();
             }
