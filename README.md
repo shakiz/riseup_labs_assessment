@@ -1,5 +1,9 @@
 # Riseup Lab Assessment
 
+<video width="320" height="240" controls>
+  <source src="videos/video.mp4" type="video/mp4">
+</video>
+
 ## Project Screenshots
 ## Splash Screen
 <img src="images/splash.jpg" height="900">
