@@ -3,8 +3,10 @@ package com.client.riseup_labs_assessment.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.client.riseup_labs_assessment.R;
 import com.client.riseup_labs_assessment.models.contents.Content;
@@ -16,6 +18,19 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     public ContentAdapter(Content contentList) {
         this.contentList = contentList;
     }
+
+    //region item click interface
+    private onItemClick onItemClick;
+
+    public interface onItemClick{
+        void itemClick(Content content);
+    }
+
+    public void setOnItemClick(onItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    //endregion
 
     @NonNull
     @Override
@@ -31,7 +46,22 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
         holder.type.setText(content.getType());
         holder.language.setText(content.getLanguage());
         holder.days.setText(String.valueOf(content.getSchedule().getDays()));
-        holder.average.setText(String.valueOf(content.getRating().getAverage()));
+        if (content.getRating() != null) {
+            if (content.getRating().getAverage() != null) {
+                if (content.getRating().getAverage() > 0) {
+                    holder.ratingBar.setMax(10);
+                    holder.ratingBar.setProgress(content.getRating().getAverage());
+                }
+            }
+        }
+        holder.item_card_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemClick != null){
+                    onItemClick.itemClick(content);
+                }
+            }
+        });
     }
 
     @Override
@@ -40,14 +70,17 @@ public class ContentAdapter extends RecyclerView.Adapter<ContentAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name, type, language, days, average;
+        TextView name, type, language, days;
+        SeekBar ratingBar;
+        CardView item_card_view;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             type = itemView.findViewById(R.id.type);
             language = itemView.findViewById(R.id.language);
             days = itemView.findViewById(R.id.days);
-            average = itemView.findViewById(R.id.average);
+            ratingBar = itemView.findViewById(R.id.ratingBar);
+            item_card_view = itemView.findViewById(R.id.item_card_view);
         }
     }
 }

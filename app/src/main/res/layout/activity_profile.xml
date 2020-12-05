@@ -52,6 +52,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/profile"/>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -103,7 +109,7 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="@string/username"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textSize="14sp"
                         android:textColor="@color/md_grey_800"/>
 

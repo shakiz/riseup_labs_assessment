@@ -67,40 +67,113 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="2"
                 android:gravity="center|left"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/type"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:textSize="12sp"
-                    android:tag="Duration"
-                    android:layout_gravity="center"
-                    android:gravity="center|left"
-                    android:textColor="@color/md_deep_orange_500"
-                    android:hint="@string/show_type"
-                    android:textColorHint="@color/md_deep_orange_500"
-                    android:ellipsize="end"
-                    android:maxLines="2"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="4dp"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/language"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:tag="Duration"
+                        android:layout_gravity="center"
+                        android:gravity="center|left"
+                        android:textColor="@color/md_deep_orange_500"
+                        android:hint="@string/show_type"
+                        android:textColorHint="@color/md_deep_orange_500"
+                        android:ellipsize="end"
+                        android:maxLines="2"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:tag="Duration"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:gravity="center|left"
+                        android:textColor="@color/md_deep_orange_500"
+                        android:hint=":"
+                        android:textColorHint="@color/md_deep_orange_500"
+                        android:ellipsize="end"
+                        android:maxLines="2"/>
+
+                    <TextView
+                        android:id="@+id/type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="12sp"
+                        android:tag="Duration"
+                        android:layout_gravity="center"
+                        android:gravity="center|left"
+                        android:textColor="@color/md_deep_orange_500"
+                        android:hint="@string/test_data"
+                        android:textColorHint="@color/md_deep_orange_500"
+                        android:ellipsize="end"
+                        android:maxLines="1"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:paddingTop="2dp"
-                    android:paddingBottom="2dp"
-                    android:paddingRight="4dp"
-                    android:scrollHorizontally="true"
-                    android:text="@string/language"
-                    android:textColor="@color/md_green_600"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
+                    android:layout_marginLeft="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:scrollHorizontally="true"
+                        android:text="@string/language"
+                        android:textColor="@color/md_green_600"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:text=":"
+                        android:textColor="@color/md_green_600"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:paddingRight="4dp"
+                        android:scrollHorizontally="true"
+                        android:text="@string/test_data"
+                        android:textColor="@color/md_green_600"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -109,39 +182,98 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="2dp"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:gravity="center|left"
+                    android:textColor="@color/md_teal_500"
+                    android:hint="@string/schedule"
+                    android:textColorHint="@color/md_teal_500"
+                    android:ellipsize="end"
+                    android:maxLines="2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="12sp"
+                    android:layout_gravity="center"
+                    android:gravity="center|left"
+                    android:textColor="@color/md_teal_500"
+                    android:hint=":"
+                    android:textColorHint="@color/md_teal_500"
+                    android:ellipsize="end"
+                    android:maxLines="2"/>
 
                 <TextView
                     android:id="@+id/days"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:textSize="12sp"
                     android:layout_gravity="center"
                     android:gravity="center|left"
-                    android:textColor="@color/md_grey_800"
-                    android:hint="@string/schedule"
-                    android:textColorHint="@color/md_grey_800"
+                    android:textColor="@color/md_teal_500"
+                    android:hint="@string/test_data"
+                    android:textColorHint="@color/md_teal_500"
                     android:ellipsize="end"
                     android:maxLines="2"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:id="@+id/average"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
                     android:textSize="12sp"
                     android:tag="Date"
                     android:gravity="center|left"
+                    android:layout_gravity="center|left"
                     android:textColor="@color/md_grey_800"
                     android:hint="@string/rating"
                     android:textColorHint="@color/md_grey_800"
                     android:ellipsize="end"
                     android:maxLines="2"/>
 
-            </LinearLayout>
+                <SeekBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_gravity="center"
+                    android:maxHeight="6dp"
+                    android:minHeight="6dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:progress="0"
+                    android:max="10"
+                    android:progressDrawable="@drawable/seek_bar_style"
+                    android:splitTrack="false"
+                    android:thumb="@drawable/custom_thumb" />
 
+            </LinearLayout>
 
         </LinearLayout>
 

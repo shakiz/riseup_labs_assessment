@@ -1,5 +1,8 @@
 package com.client.riseup_labs_assessment.models.contents;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -23,7 +26,7 @@ import java.util.List;
         "network"
 })
 
-public class Content {
+public class Content implements Parcelable {
     @JsonProperty("id")
     private Integer id;
     @JsonProperty("url")
@@ -179,5 +182,77 @@ public class Content {
     @JsonProperty("network")
     public void setNetwork(Network network) {
         this.network = network;
+    }
+
+
+    protected Content(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
+        url = in.readString();
+        name = in.readString();
+        type = in.readString();
+        language = in.readString();
+        genres = in.createStringArrayList();
+        status = in.readString();
+        if (in.readByte() == 0) {
+            runtime = null;
+        } else {
+            runtime = in.readInt();
+        }
+        premiered = in.readString();
+        if (in.readByte() == 0) {
+            weight = null;
+        } else {
+            weight = in.readInt();
+        }
+    }
+
+    public static final Creator<Content> CREATOR = new Creator<Content>() {
+        @Override
+        public Content createFromParcel(Parcel in) {
+            return new Content(in);
+        }
+
+        @Override
+        public Content[] newArray(int size) {
+            return new Content[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
+        dest.writeString(url);
+        dest.writeString(name);
+        dest.writeString(type);
+        dest.writeString(language);
+        dest.writeStringList(genres);
+        dest.writeString(status);
+        if (runtime == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(runtime);
+        }
+        dest.writeString(premiered);
+        if (weight == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(weight);
+        }
     }
 }

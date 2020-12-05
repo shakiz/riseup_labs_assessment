@@ -8,11 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import com.client.riseup_labs_assessment.models.contents.Content;
 import com.client.riseup_labs_assessment.repositories.ContentRepository;
 
-import java.util.List;
-
 public class ContentViewModel extends AndroidViewModel {
     private ContentRepository contentRepository;
-    private MutableLiveData<Content> contentList;
+    private MutableLiveData<Content> content;
 
     public ContentViewModel(@NonNull Application application) {
         super(application);
@@ -20,10 +18,10 @@ public class ContentViewModel extends AndroidViewModel {
 
     public void getData(String queryString){
         contentRepository = ContentRepository.getInstance();
-        contentList = contentRepository.getContents(queryString);
+        content = contentRepository.getContents(queryString);
     }
 
-    public MutableLiveData<Content> getContentList() {
-        return contentList;
+    public MutableLiveData<Content> getContent() {
+        return content;
     }
 }

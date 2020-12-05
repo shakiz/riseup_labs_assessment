@@ -2,22 +2,21 @@ package com.client.riseup_labs_assessment.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.client.riseup_labs_assessment.R;
 import com.client.riseup_labs_assessment.tools.PrefManager;
 import com.client.riseup_labs_assessment.tools.Validation;
+import com.client.riseup_labs_assessment.userdb.UserDatabaseHelper;
 
 import static com.client.riseup_labs_assessment.tools.Constants.mIsLoggedIn;
+import static com.client.riseup_labs_assessment.tools.Constants.mUserName;
 
 public class LoginActivity extends AppCompatActivity {
     private Validation validation;
@@ -25,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private EditText username, password;
     private TextView registerText;
+    private UserDatabaseHelper userDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         registerText = findViewById(R.id.registerText);
         validation = new Validation(this);
         prefManager = new PrefManager(this);
+        userDatabaseHelper = new UserDatabaseHelper(this);
     }
     //endregion
 
@@ -54,8 +55,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validation.validateData(username.getText().toString()) && validation.validateData(password.getText().toString())){
-                    prefManager.set(mIsLoggedIn, true);
-                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                    if (userDatabaseHelper.checkUser(username.getText().toString(),password.getText().toString())){
+                        Toast.makeText(getApplicationContext(),"Login Successful",Toast.LENGTH_SHORT).show();
+                        prefManager.set(mIsLoggedIn, true);
+                        prefManager.set(mUserName, username.getText().toString());
+                        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                    } else {
+                        Toast.makeText(getApplicationContext(),"Login failed",Toast.LENGTH_SHORT).show();
+                    }
                 }
                 else{
                     Toast.makeText(LoginActivity.this, "Please input correct data", Toast.LENGTH_SHORT).show();
@@ -80,6 +87,12 @@ public class LoginActivity extends AppCompatActivity {
         exitIntent.addCategory(Intent.CATEGORY_HOME);
         exitIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(exitIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        userDatabaseHelper.close();
     }
 
     //endregion

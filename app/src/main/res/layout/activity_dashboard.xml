@@ -39,6 +39,17 @@
             android:textStyle="bold"
             android:textColor="@color/md_white_1000"/>
 
+        <ImageView
+            android:id="@+id/LogoutButton"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="16dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_logout"
+            android:layout_marginRight="16dp"
+            app:tint="@color/md_white_1000"
+            android:padding="8dp" />
+
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -149,7 +160,23 @@
                 android:drawableTint="@color/md_green_800"
                 android:drawablePadding="4dp"
                 android:gravity="center"
-                android:text="@string/all_contents"/>
+                android:text="@string/search_results"/>
+
+            <TextView
+                android:id="@+id/searchResultAppear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="12dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_cyan_800"
+                android:textAllCaps="true"
+                android:layout_gravity="center"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:text="@string/search_results_appears_here"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/contentRecycler"
@@ -159,6 +186,14 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="4dp"
                 tools:listitem="@layout/adapter_recycler_content"/>
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:indeterminateDrawable="@drawable/progress"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

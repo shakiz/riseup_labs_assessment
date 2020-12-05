@@ -30,4 +30,12 @@
     <string name="language">Language</string>
     <string name="schedule">Schedule</string>
     <string name="rating">Rating</string>
+    <string name="search_results">Search Results</string>
+    <string name="test_data">Test Data</string>
+    <string name="search_results_appears_here">Your search result will appear here</string>
+    <string name="content_name">Content name</string>
+    <string name="content_status">Content Status</string>
+    <string name="time">Time</string>
+    <string name="days">Days</string>
+    <string name="schedule_on">Scheduled on</string>
 </resources>

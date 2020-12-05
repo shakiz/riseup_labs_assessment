@@ -11,8 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.client.riseup_labs_assessment.R;
+import com.client.riseup_labs_assessment.models.User;
 import com.client.riseup_labs_assessment.tools.PrefManager;
 import com.client.riseup_labs_assessment.tools.Validation;
+import com.client.riseup_labs_assessment.userdb.UserDatabaseHelper;
 
 import static com.client.riseup_labs_assessment.tools.Constants.mIsLoggedIn;
 
@@ -22,6 +24,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Button loginBtn;
     private EditText name, username, password, phone;
     private TextView returnToLogin;
+    private UserDatabaseHelper userDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class RegistrationActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.loginBtn);
         validation = new Validation(this);
         prefManager = new PrefManager(this);
+        userDatabaseHelper = new UserDatabaseHelper(this);
     }
     //endregion
 
@@ -54,8 +58,16 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validation.validateData(username.getText().toString()) && validation.validateData(password.getText().toString()) &&
                         validation.validateData(name.getText().toString()) && validation.validateData(phone.getText().toString())){
-                    prefManager.set(mIsLoggedIn, true);
-                    startActivity(new Intent(RegistrationActivity.this, DashboardActivity.class));
+                    if (userDatabaseHelper.checkUserExistence(username.getText().toString())){
+                        Toast.makeText(RegistrationActivity.this, "User already exists, Please try with different username", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                        prefManager.set(mIsLoggedIn, true);
+                        User user = new User(name.getText().toString(),username.getText().toString(),Integer.parseInt(password.getText().toString()),phone.getText().toString());
+                        userDatabaseHelper.addUser(user);
+                        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                    }
                 }
                 else{
                     Toast.makeText(RegistrationActivity.this, "Please input correct data", Toast.LENGTH_SHORT).show();
@@ -77,6 +89,12 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        userDatabaseHelper.close();
     }
 
     //endregion

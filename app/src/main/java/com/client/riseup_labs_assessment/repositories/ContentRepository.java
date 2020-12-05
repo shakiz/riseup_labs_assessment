@@ -1,15 +1,13 @@
 package com.client.riseup_labs_assessment.repositories;
 
-
 import androidx.lifecycle.MutableLiveData;
 import com.client.riseup_labs_assessment.apiutils.AllApiService;
 import com.client.riseup_labs_assessment.models.contents.Content;
-import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.client.riseup_labs_assessment.apiutils.AllUrlClass.BASE_URL;
+import static com.client.riseup_labs_assessment.tools.Constants.BASE_URL;
 import static com.client.riseup_labs_assessment.tools.UtilsManager.getClient;
 
 public class ContentRepository {
@@ -24,7 +22,7 @@ public class ContentRepository {
     }
 
     public MutableLiveData<Content> getContents(String queryString){
-        final MutableLiveData<Content> contentList = new MutableLiveData<>();
+        final MutableLiveData<Content> content = new MutableLiveData<>();
         apiService = getClient(BASE_URL).create(AllApiService.class);
         final Call<Content> call = apiService.getContent(queryString);
         call.enqueue(new Callback<Content>() {
@@ -32,16 +30,16 @@ public class ContentRepository {
             public void onResponse(Call<Content> call, Response<Content> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        contentList.setValue(response.body());
+                        content.setValue(response.body());
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<Content> call, Throwable t) {
-                contentList.setValue(null);
+                content.setValue(null);
             }
         });
-        return contentList;
+        return content;
     }
 }
